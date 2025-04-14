@@ -1,25 +1,25 @@
-fn main() -> u32 {
-    fib(16)
-}
+mod mod_math;
+use mod_math::ModMath;
 
-fn fib(mut n: u32) -> u32 {
-    let mut a: u32 = 0;
-    let mut b: u32 = 1;
-    while n != 0 {
-        n = n - 1;
-        let temp = b;
-        b = a + b;
-        a = temp;
-    };
-    a
-}
+fn main() {
+    let a = 21;
+    let b = 4;
+    let sub = ModMath::subtract_numbers(a, b);
+    let mul = ModMath::multiply_numbers(a, b);
+    let div = ModMath::divide_numbers(a, b);
+    let even_or_odd = ModMath::even_or_odd_sum(a, b);
+    let first_odd_num = ModMath::first_num_is_odd(a);
+    let second_odd_num = ModMath::second_num_is_odd(b);
+    let positive_num = ModMath::positive_number(a);
+    let max_num = ModMath::num_is_max(a,b);
 
-#[cfg(test)]
-mod tests {
-    use super::fib;
-
-    #[test]
-    fn it_works() {
-        assert(fib(16) == 987, 'it works!');
-    }
+    //Output
+    println!("Subtraction: {}", sub);
+    println!("Multiplication: {}", mul);
+    println!("Division: {}", div);
+    println!("Sum_is_Even:{}", even_or_odd);
+    println!("First_Number_is_Odd:{}", first_odd_num);
+    println!("Second_Number_is_Odd:{}", second_odd_num);
+    println!("Positive_Number:{}", positive_num);
+    println!("Maximum_Number:{}", max_num);
 }
