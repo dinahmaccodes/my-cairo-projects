@@ -7,20 +7,21 @@ use cairo_2::IHelloStarknetSafeDispatcherTrait;
 use cairo_2::IHelloStarknetDispatcher;
 use cairo_2::IHelloStarknetDispatcherTrait;
 
-fn deploy_contract(name: ByteArray) -> ContractAddress {
-    let contract = declare(name).unwrap().contract_class();
+    fn deploy_contract(name: ByteArray) -> ContractAddress {
+    let contract = declare(name).unwrap().contract_class(); 
     let (contract_address, _) = contract.deploy(@ArrayTrait::new()).unwrap();
     contract_address
 }
 
-#[test]
-fn test_increase_balance() {
+#[test] 
+
+    fn test_increase_balance() {
     let contract_address = deploy_contract("HelloStarknet");
 
-    let dispatcher = IHelloStarknetDispatcher { contract_address };
+    let dispatcher =  IHelloStarknetDispatcher { contract_address };
 
     let balance_before = dispatcher.get_balance();
-    assert(balance_before == 0, 'Invalid balance');
+    assert(balance_before == 0, 'Invalid balance'); 
 
     dispatcher.increase_balance(42);
 
