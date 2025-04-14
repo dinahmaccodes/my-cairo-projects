@@ -1,0 +1,1 @@
+{"version":1,"contracts":[{"id":"bupvblbrn82vk","package_name":"arthmetic_operations","contract_name":"HelloStarknet","module_path":"arthmetic_operations::HelloStarknet","artifacts":{"sierra":"arthmetic_operations_integrationtest_HelloStarknet.test.contract_class.json","casm":null}}]}
