@@ -1,1 +1,0 @@
-{"version":1,"contracts":[{"id":"i3meis091mo1i","package_name":"cairo_2","contract_name":"HelloStarknet","module_path":"cairo_2::HelloStarknet","artifacts":{"sierra":"cairo_2_HelloStarknet.contract_class.json","casm":null}}]}
