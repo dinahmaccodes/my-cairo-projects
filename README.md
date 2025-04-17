@@ -20,7 +20,7 @@ cd <folder_name>
 scarb-cairo-run
 ```
 
-NB: ('scarb-cairo-run' might soon be deprecated so using scarb-execute will be the next command to use as replacement)
+NB: (`scarb-cairo-run` might soon be deprecated so using `scarb-execute` will be the next command to use as replacement)
 When using cd <folder_name> [only work on one at a time]
 
 Resources used:
