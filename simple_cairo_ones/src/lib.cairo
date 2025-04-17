@@ -8,7 +8,7 @@ fn main() {
     str();
     felt();
 }
-//hello word
+//hello world
 fn hello_world() {
     println!("Hello world");
 }
@@ -62,7 +62,7 @@ fn if_complex() {
     //if both are false, then it fails and moves onto the program after else
     // || - or, the statements above are for or  ||
     // but if i switch it to && - and, both terms need to be fulfilled
-    // you can play with it if you like 
+    // you can play with it if you like
     if is_amazing && ver > 0 {
         println!("Lets do some coding!");
     } else {
@@ -71,8 +71,8 @@ fn if_complex() {
 }
 //strings can be a maximum of 31 characters
 fn str() {
-    //NB: Cairo prints strings as a single big number, 
-    //so printing it as a felt252 - a big interger 
+    //NB: Cairo prints strings as a single big number,
+    //so printing it as a felt252 - a big interger
     let s = 'Testing_Strings';
     println!("What are we doing? {}", s);
     assert(s == 'Testing_Strings', 'String is incorrect');
@@ -84,12 +84,11 @@ fn felt() {
     //felts are used to represent integers in Cairo
     let f: felt252 = 3618502788666131213697322783095070105623107215331596699973092056135872020480;
     let o: felt252 = 1;
-    assert( f + o == 0, 'P == 0 (mod P)' );
-    // The assertion wants it to be zero, 0 
+    assert(f + o == 0, 'P == 0 (mod P)');
+    // The assertion wants it to be zero, 0
     //this is because if you add an extra value, it becomes too big for the range of felt252
     println!("Your felt is: {}", f);
     println!("Your other felt is: {}", o);
-
 }
 //basic attempt at testing
 // #[test]
@@ -101,4 +100,5 @@ fn felt() {
 //     var();
 
 // }
+
 
