@@ -6,6 +6,7 @@ fn main() {
     if_func();
     if_complex();
     str();
+    felt();
 }
 //hello word
 fn hello_world() {
@@ -75,6 +76,20 @@ fn str() {
     let s = 'Testing_Strings';
     println!("What are we doing? {}", s);
     assert(s == 'Testing_Strings', 'String is incorrect');
+}
+
+fn felt() {
+    //felts are long values, can hold almost any data type in cairo except u256
+    //felts are 252 bits long, so they can hold a number up to 2^252 - 1
+    //felts are used to represent integers in Cairo
+    let f: felt252 = 3618502788666131213697322783095070105623107215331596699973092056135872020480;
+    let o: felt252 = 1;
+    assert( f + o == 0, 'P == 0 (mod P)' );
+    // The assertion wants it to be zero, 0 
+    //this is because if you add an extra value, it becomes too big for the range of felt252
+    println!("Your felt is: {}", f);
+    println!("Your other felt is: {}", o);
+
 }
 //basic attempt at testing
 // #[test]
