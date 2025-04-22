@@ -1,3 +1,7 @@
+const HOUR_TO_SECONDS: u32 = 3600;
+const MINUTE_TO_SECONDS: u32 = 60; 
+
+
 fn main() {
     hello_world();
     num();
@@ -8,6 +12,7 @@ fn main() {
     str();
     felt();
     loo();
+    cons();
 }
 //hello world
 fn hello_world() {
@@ -102,6 +107,13 @@ fn loo() -> u128 {
         lo = lo + 1;
     }
     lo
+}
+
+fn cons() {
+    //constants store values that cannot be changed 
+    //they store immutable variables
+    println!("The first constant is: {}", HOUR_TO_SECONDS);
+    println!("The second constant is: {}", MINUTE_TO_SECONDS);
 }
 //basic attempt at testing
 // #[test]
