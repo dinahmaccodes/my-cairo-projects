@@ -7,6 +7,7 @@ fn main() {
     if_complex();
     str();
     felt();
+    loo();
 }
 //hello world
 fn hello_world() {
@@ -89,6 +90,18 @@ fn felt() {
     //this is because if you add an extra value, it becomes too big for the range of felt252
     println!("Your felt is: {}", f);
     println!("Your other felt is: {}", o);
+}
+
+fn loo() -> u128 {
+    let mut lo: u128 = 0;
+    loop {
+        if lo > 10 {
+            break;
+        }
+        println!("Looping done {}", lo);
+        lo = lo + 1;
+    }
+    lo
 }
 //basic attempt at testing
 // #[test]
