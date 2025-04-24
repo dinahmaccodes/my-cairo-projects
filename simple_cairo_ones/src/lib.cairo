@@ -1,6 +1,15 @@
 const HOUR_TO_SECONDS: u32 = 3600;
 const MINUTE_TO_SECONDS: u32 = 60; 
 
+enum Regions {
+    Africa: felt252,
+    Asia: felt252,
+    Europe: felt252,
+    NorthAmerica: felt252,
+    SouthAmerica: felt252,
+    Australia: felt252,
+    Antarctica: felt252
+}
 
 fn main() {
     hello_world();
@@ -114,6 +123,18 @@ fn cons() {
     //they store immutable variables
     println!("The first constant is: {}", HOUR_TO_SECONDS);
     println!("The second constant is: {}", MINUTE_TO_SECONDS);
+}
+
+fn handle_regions(regions: Regions) {
+    match regions {
+        Regions::Africa => println!("Africa"),
+        Regions::Asia => println!("Asia"),
+        Regions::Europe => println!("Europe"),
+        Regions::NorthAmerica => println!("North America"),
+        Regions::SouthAmerica => println!("South America"),
+        Regions::Australia => println!("Australia"),
+        Regions::Antarctica => println!("Antarctica"),
+    }
 }
 //basic attempt at testing
 // #[test]
