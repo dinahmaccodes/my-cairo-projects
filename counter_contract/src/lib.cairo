@@ -1,32 +1,107 @@
-/// Interface representing `HelloContract`.
-/// This interface allows modification and retrieval of the contract balance.
+
+// Modification of the contract's balance 
+
 #[starknet::interface]
-pub trait IHelloStarknet<TContractState> {
-    /// Increase contract balance.
-    fn increase_balance(ref self: TContractState, amount: felt252);
-    /// Retrieve contract balance.
-    fn get_balance(self: @TContractState) -> felt252;
+pub trait ICounterContract<TContractState> {
+    //Increase the counter balance
+    fn increase_balance(ref self: TContractState, amount: u256);
+
+    //Increase by one 
+    fn increase_balance_by_one(ref self: TContractState, amount: u256);
+
+    //Decrease the counter balance 
+    //However, add a check for underflow so balance should not be less than 0 
+    fn decrease_balance(ref self: TContractState, amount: u256);
+
+    //Decrease by one
+    fn decrease_balance_by_one(ref self: TContractState, amount: u256);
+
+    //Get counter balance 
+    fn get_balance(self: @TContractState) -> u256;
+
+    //Reset counter balance 
+    fn reset_balance(ref self: TContractState, amount: u256);
 }
 
-/// Simple contract for managing balance.
 #[starknet::contract]
-mod HelloStarknet {
+mod CounterContract {
     use core::starknet::storage::{StoragePointerReadAccess, StoragePointerWriteAccess};
+
 
     #[storage]
     struct Storage {
-        balance: felt252,
+        balance: u256,
     }
+
 
     #[abi(embed_v0)]
-    impl HelloStarknetImpl of super::IHelloStarknet<ContractState> {
-        fn increase_balance(ref self: ContractState, amount: felt252) {
-            assert(amount != 0, 'Amount cannot be 0');
+    impl CounterContractImpl of super::ICounterContract<ContractState> {
+
+        fn increase_balance(ref self: ContractState, amount: u256) {
+            assert!(amount != 0, "Amount can not be zero" );
             self.balance.write(self.balance.read() + amount);
+
+        } 
+        fn increase_balance_by_one(ref self: ContractState, amount: u256) {
+            assert(amount != 0, 'Amount can not be zero');
+            self.balance.write(self.balance.read() + 1);
         }
 
-        fn get_balance(self: @ContractState) -> felt252 {
+        fn decrease_balance(ref self: ContractState, amount: u256  ) {
+            assert(amount > 0, 'Amount can not be zero');
+            assert!(self.balance.read() > 0, "Balance can not be less than zero");
+            self.balance.write(self.balance.read() - amount);
+        }
+
+        fn decrease_balance_by_one(ref self: ContractState, amount: u256) {
+            assert(amount != 0, 'Amount can not be zero');
+            self.balance.write(self.balance.read() - 1);
+            assert!(self.balance.read() >= 0, "Balance can not be less than zero");
+        }
+
+        fn get_balance(self: @ContractState) -> u256 {
             self.balance.read()
         }
+
+        fn reset_balance(ref self: ContractState, amount: u256) {
+            self.balance.write(0);
+
+        }
+
     }
 }
+
+
+
+
+// /// This interface allows modification and retrieval of the contract balance.
+// #[starknet::interface]
+// pub trait IHelloStarknet<TContractState> {
+//     /// Increase contract balance.
+//     fn increase_balance(ref self: TContractState, amount: felt252);
+//     /// Retrieve contract balance.
+//     fn get_balance(self: @TContractState) -> felt252;
+// }
+
+// /// Simple contract for managing balance.
+// #[starknet::contract]
+// mod HelloStarknet {
+//     use core::starknet::storage::{StoragePointerReadAccess, StoragePointerWriteAccess};
+
+//     #[storage]
+//     struct Storage {
+//         balance: felt252,
+//     }
+
+//     #[abi(embed_v0)]
+//     impl HelloStarknetImpl of super::IHelloStarknet<ContractState> {
+//         fn increase_balance(ref self: ContractState, amount: felt252) {
+//             assert(amount != 0, 'Amount cannot be 0');
+//             self.balance.write(self.balance.read() + amount);
+//         }
+
+//         fn get_balance(self: @ContractState) -> felt252 {
+//             self.balance.read()
+//         }
+//     }
+// }
