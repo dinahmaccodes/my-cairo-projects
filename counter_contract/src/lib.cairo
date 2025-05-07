@@ -6,14 +6,14 @@ pub trait ICounterContract<TContractState> {
     fn increase_balance(ref self: TContractState, amount: u256);
 
     //Increase by one 
-    fn increase_balance_by_one(ref self: TContractState, amount: u256);
+    fn increase_balance_by_one(ref self: TContractState);
 
     //Decrease the counter balance 
     //However, add a check for underflow so balance should not be less than 0 
     fn decrease_balance(ref self: TContractState, amount: u256);
 
     //Decrease by one
-    fn decrease_balance_by_one(ref self: TContractState, amount: u256);
+    fn decrease_balance_by_one(ref self: TContractState);
 
     //Get counter balance 
     fn get_balance(self: @TContractState) -> u256;
@@ -37,12 +37,11 @@ mod CounterContract {
     impl CounterContractImpl of super::ICounterContract<ContractState> {
 
         fn increase_balance(ref self: ContractState, amount: u256) {
-            assert!(amount != 0, "Amount can not be zero" );
+            assert!(amount > 0, "Cannot increase by zero?" );
             self.balance.write(self.balance.read() + amount);
 
         } 
-        fn increase_balance_by_one(ref self: ContractState, amount: u256) {
-            assert(amount != 0, 'Amount can not be zero');
+        fn increase_balance_by_one(ref self: ContractState) {
             self.balance.write(self.balance.read() + 1);
         }
 
@@ -52,10 +51,8 @@ mod CounterContract {
             self.balance.write(self.balance.read() - amount);
         }
 
-        fn decrease_balance_by_one(ref self: ContractState, amount: u256) {
-            assert(amount != 0, 'Amount can not be zero');
+        fn decrease_balance_by_one(ref self: ContractState) {
             self.balance.write(self.balance.read() - 1);
-            assert!(self.balance.read() >= 0, "Balance can not be less than zero");
         }
 
         fn get_balance(self: @ContractState) -> u256 {
