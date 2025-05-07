@@ -64,7 +64,7 @@ fn test_increase_balance_by_one() {
 }
 
 #[test]
-#[should_panic(expected: "Amount can not be zero")]
+#[should_panic(expected: "Amount is not correct")]
 fn test_wrong_balance_after_increase_by_one() {
     let contract_address = deploy_contract("CounterContract");
 
@@ -73,7 +73,7 @@ fn test_wrong_balance_after_increase_by_one() {
     assert(balance_before == 0, 'Amount can not be zero');
     dispatcher.increase_balance_by_one();
     let balance_after = dispatcher.get_balance();
-    assert!(balance_after == 13, "Amount can not be zero");
+    assert!(balance_after == 13, "Amount is not correct");
 
 }
 
@@ -87,7 +87,7 @@ fn test_decrease_balance() {
     dispatcher.increase_balance(16);
     dispatcher.decrease_balance(7);
     let balance_after = dispatcher.get_balance();
-    assert!(balance_after == 9, "Amount can not be zero");
+    assert!(balance_after == 9, "Amount can not be this");
 
 }
 
