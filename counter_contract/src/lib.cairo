@@ -24,7 +24,7 @@ pub trait ICounterContract<TContractState> {
 
 #[starknet::contract]
 mod CounterContract {
-    use core::starknet::storage::{StoragePointerReadAccess, StoragePointerWriteAccess};
+    use starknet::storage::{StoragePointerReadAccess, StoragePointerWriteAccess};
 
 
     #[storage]
