@@ -2,8 +2,9 @@ use starknet::ContractAddress;
 
 use snforge_std::{declare, ContractClassTrait, DeclareResultTrait};
 
-use counter_contract::ICounterContract;
-use counter_contract::ICounterContractSafeDispatcherTrait;
+// use counter_contract::ICounterContract;
+// use counter_contract::ICounterContractSafeDispatcherTrait;
+// use counter_contract::ICounterContractSafeDispatcher;
 use counter_contract::ICounterContractDispatcher;
 use counter_contract::ICounterContractDispatcherTrait;
 
