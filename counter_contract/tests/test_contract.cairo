@@ -2,17 +2,18 @@ use starknet::ContractAddress;
 
 use snforge_std::{declare, ContractClassTrait, DeclareResultTrait};
 
-// use counter_contract::ICounterContract;
-// use counter_contract::ICounterContractSafeDispatcherTrait;
-// use counter_contract::ICounterContractSafeDispatcher;
+use counter_contract::ICounterContractSafeDispatcher;
+use counter_contract::ICounterContractSafeDispatcherTrait;
 use counter_contract::ICounterContractDispatcher;
 use counter_contract::ICounterContractDispatcherTrait;
 
 fn deploy_contract(name: ByteArray) -> ContractAddress {
-    let contract = declare(name).unwrap().contract_class();
+    let contract = declare(name).expect('it is not declaring').contract_class();    
     let (contract_address, _) = contract.deploy(@ArrayTrait::new()).unwrap();
     contract_address 
 } 
+
+
 
 #[test]
 fn test_increase_balance() {
@@ -20,23 +21,27 @@ fn test_increase_balance() {
 
     let dispatcher = ICounterContractDispatcher { contract_address };
     let balance_before = dispatcher.get_balance();
-    assert(balance_before == 0, 'Amount can not be zero');
+    assert(balance_before == 0, 'Amount should be zero');
     dispatcher.increase_balance(32);
     let balance_after = dispatcher.get_balance();
-    assert!(balance_after == 32, "Amount can not be zero");
+    assert!(balance_after == 32, "Amount can not be this");
 
 }
 
 #[test]
 #[should_panic(expected: "Cannot increase by zero")]
-fn test_increase_balance_by_zero() {
+fn test_panic_attempt_for_increase_balance_by_zero() {
     let contract_address = deploy_contract("CounterContract");
     let dispatcher = ICounterContractDispatcher { contract_address };
     let balance_before = dispatcher.get_balance();
-    assert(balance_before == 0, 'Amount can not be zero');
+    assert(balance_before == 0, 'Amount should be zero');
     dispatcher.increase_balance(0);
 
 }
+
+#[test]
+
+
 
 #[test]
 #[should_panic(expected: "amount is wrong")]
