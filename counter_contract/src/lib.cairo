@@ -37,7 +37,7 @@ mod CounterContract {
     impl CounterContractImpl of super::ICounterContract<ContractState> {
 
         fn increase_balance(ref self: ContractState, amount: u256) {
-            assert!(amount > 0, "Cannot increase by zero?" );
+            assert!(amount > 0, "Cannot increase by zero" );
             self.balance.write(self.balance.read() + amount);
 
         } 
